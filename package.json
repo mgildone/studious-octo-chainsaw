@@ -4,9 +4,10 @@
   "description": "Elmsperiment",
   "main": "index.js",
   "scripts": {
-    "build:elm":"elm make src/Main.elm --output src/elm.js",
-    "build:client":"cpx \"src/**/*.{js,css,html,png,jpg,svg}\" .",
-    "build":"npm run build:elm && npm run build:client",
+    "build:elm": "elm make src/Main.elm --output src/elm.js",
+    "build:client": "cpx \"src/**/*.{js,css,html,png,jpg,svg}\" .",
+    "dev": "parcel index.html",
+    "build": "parcel build index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,6 +22,10 @@
   "homepage": "https://github.com/matteo-gildone/studious-octo-chainsaw#readme",
   "devDependencies": {
     "cpx": "^1.5.0",
-    "elm": "^0.19.0-no-deps"
+    "cssnano": "^4.1.10",
+    "elm": "^0.19.0-no-deps",
+    "elm-hot": "^1.1.2",
+    "node-elm-compiler": "^5.0.4",
+    "sass": "^1.23.3"
   }
 }
