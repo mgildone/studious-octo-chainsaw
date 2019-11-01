@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build:elm":"elm make src/Main.elm --output src/elm.js",
-    "build:client":"cpx \"src/**/*.{js,css,html,png,jpg,svg}\" dist",
+    "build:client":"cpx \"src/**/*.{js,css,html,png,jpg,svg}\" .",
     "build":"npm run build:elm && npm run build:client",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
