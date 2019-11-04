@@ -1,7 +1,8 @@
 module Main exposing (Model, Msg(..), init, main, update, view)
 
 import Browser
-import Html exposing (Html, button, div, text)
+import Html exposing (..)
+import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
 
 
@@ -52,7 +53,12 @@ update msg model =
 view : Model -> Html Msg
 view model =
     div []
-        [ button [ onClick Decrement ] [ text "-" ]
+        [ div [ class "c-nav-bar__container" ]
+            [ header [ class "c-nav-bar" ]
+                [ h1 [ class "c-nav-bar__logo" ] [ text "SOC" ]
+                ]
+            ]
+        , button [ onClick Decrement ] [ text "-" ]
         , div [] [ text (String.fromInt model) ]
         , button [ onClick Increment ] [ text "+" ]
         ]

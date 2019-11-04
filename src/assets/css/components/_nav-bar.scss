@@ -1,0 +1,17 @@
+.c-nav-bar {
+    background-color: $primary-dark;
+    padding: get-spacing("xs");
+    color: $secondary-light;
+}
+
+.c-nav-bar__container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.c-nav-bar__logo {
+    margin: get-spacing(0);
+    font-family: $font-family-primary;
+}

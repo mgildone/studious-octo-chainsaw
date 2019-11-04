@@ -4,8 +4,9 @@
   "description": "Elmsperiment",
   "main": "index.js",
   "scripts": {
-    "dev": "parcel src/index.html",
-    "build": "parcel build src/index.html",
+    "data": "cpx src/assets/data/**/*.json dist/data",
+    "dev": "npm run data && parcel src/index.html",
+    "build": "npm run data && parcel build src/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

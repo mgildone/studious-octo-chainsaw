@@ -1,0 +1,21 @@
+$font-family-primary: 'McLaren', cursive;
+
+$font-size-xxs: 10px;
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-md: 17px;
+$font-size-lg: 24px;
+$font-size-xl: 26px;
+$font-size-xxl: 28px;
+
+$font-weight: (
+  normal: 400,
+  bold: 700
+);
+
+$line-height-base: 1;
+
+$min_font: 18px;
+$max_font: 36px;
+$mod_1: 1.2; // mobile
+$mod_2: 1.5; // desktop
