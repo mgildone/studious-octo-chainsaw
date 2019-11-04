@@ -4,10 +4,8 @@
   "description": "Elmsperiment",
   "main": "index.js",
   "scripts": {
-    "build:elm": "elm make src/Main.elm --output src/elm.js",
-    "build:client": "cpx \"src/**/*.{js,css,html,png,jpg,svg}\" .",
-    "dev": "parcel index.html",
-    "build": "parcel build index.html",
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,6 +24,7 @@
     "elm": "^0.19.0-no-deps",
     "elm-hot": "^1.1.2",
     "node-elm-compiler": "^5.0.4",
+    "parcel-bundler": "^1.12.4",
     "sass": "^1.23.3"
   }
 }
