@@ -1,0 +1,22 @@
+@function get-spacing($keys...) {
+    $list: ();
+
+    @for $i from 1 through length($keys) {
+        $key: nth($keys, $i);
+
+        @if map-has-key($spacing, $key) {
+            @if length($keys) == 1 {
+                $list: map-get($spacing, $key) * 1px;
+            }
+            @else {
+                $list: append($list, map-get($spacing, $key) * 1px, space);
+            }
+        }
+        @else {
+            @error '#{$key} does not exist in the $spacing map.  Allowed values are #{$spacing}.';
+            @return null;
+        }
+    }
+
+    @return $list;
+}

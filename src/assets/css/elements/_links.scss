@@ -1,0 +1,5 @@
+a {
+    @include base-link;  
+    @include inherited;
+    @include unvisited;
+}

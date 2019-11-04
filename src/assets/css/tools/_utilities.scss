@@ -1,0 +1,30 @@
+@mixin u-text-serif {
+    font-family: $font-family-serif;
+}
+
+@mixin u-text-sans-serif {
+    font-family: $font-family-sans;
+}
+
+@mixin u-text-font-smoothing {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin u-text-interface {
+    @include font-size($font-size-sm);
+    font-family: $font-family-sans;
+    letter-spacing: 0.017em;
+}
+
+@mixin u-text-right {
+    text-align: right;
+}
+
+@mixin u-text-size($size) {
+    @include font-size(size);
+}
+
+@mixin u-text-weight($weight) {
+    font-weight: $weight;
+}

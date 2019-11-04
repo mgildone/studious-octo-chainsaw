@@ -1,0 +1,30 @@
+@mixin unvisited {
+    &.visited,
+    &:visited {
+        color: inherit;
+    }
+
+    &.hover,
+    &:hover {
+        color: inherit;
+    }
+}
+
+@mixin inherited {
+    color: inherit;
+
+    &.visited,
+    &:visited {
+        color: inherit;
+    }
+
+    &.hover,
+    &:hover {
+        color: inherit;
+    }
+}
+
+@mixin base-link {
+    text-decoration: none;
+    text-decoration-skip-ink: auto;
+}
