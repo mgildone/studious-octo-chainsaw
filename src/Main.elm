@@ -1,34 +1,12 @@
-module Main exposing (Model, Msg(..), init, main, update, view)
+module Main exposing (Msg(..), main, update, view)
 
 import Browser
-import Html exposing (Html, button, div, h1, text)
-import Html.Attributes exposing (class)
+import Html exposing (Html, button, div, text)
 import Html.Events exposing (onClick)
 
 
-
--- MAIN
-
-
 main =
-    Browser.sandbox { init = init, update = update, view = view }
-
-
-
--- MODEL
-
-
-type alias Model =
-    Int
-
-
-init : Model
-init =
-    0
-
-
-
--- UPDATE
+    Browser.sandbox { init = 0, update = update, view = view }
 
 
 type Msg
@@ -36,7 +14,6 @@ type Msg
     | Decrement
 
 
-update : Msg -> Model -> Model
 update msg model =
     case msg of
         Increment ->
@@ -46,15 +23,9 @@ update msg model =
             model - 1
 
 
-
--- VIEW
-
-
-view : Model -> Html Msg
 view model =
     div []
-        [ h1 [] [ text "Studious Octo Chainsaw" ]
-        , button [ onClick Decrement ] [ text "-" ]
+        [ button [ onClick Decrement ] [ text "-" ]
         , div [] [ text (String.fromInt model) ]
         , button [ onClick Increment ] [ text "+" ]
         ]
