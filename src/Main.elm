@@ -11,7 +11,12 @@ import Html.Events exposing (onClick)
 
 
 main =
-    Browser.sandbox { init = init, update = update, view = view }
+    Browser.element
+        { init = init
+        , update = update
+        , subscriptions = subscriptions
+        , view = view
+        }
 
 
 
@@ -22,9 +27,9 @@ type alias Model =
     Int
 
 
-init : Model
-init =
-    0
+init : () -> ( Model, Cmd Msg )
+init _ =
+    ( 0, Cmd.none )
 
 
 
@@ -36,14 +41,23 @@ type Msg
     | Decrement
 
 
-update : Msg -> Model -> Model
+update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         Increment ->
-            model + 1
+            ( model + 1, Cmd.none )
 
         Decrement ->
-            model - 1
+            ( model - 1, Cmd.none )
+
+
+
+-- SUBSCRIPTIONS
+
+
+subscriptions : Model -> Sub Msg
+subscriptions model =
+    Sub.none
 
 
 
@@ -58,7 +72,9 @@ view model =
                 [ h1 [ class "c-nav-bar__logo" ] [ text "SOC" ]
                 ]
             ]
-        , button [ onClick Decrement ] [ text "-" ]
-        , div [] [ text (String.fromInt model) ]
-        , button [ onClick Increment ] [ text "+" ]
+        , div []
+            [ button [ onClick Decrement ] [ text "-" ]
+            , div [] [ text (String.fromInt model) ]
+            , button [ onClick Increment ] [ text "+" ]
+            ]
         ]
