@@ -30,7 +30,6 @@ type alias Race =
     { name : String
     , pct : Int
     , id : String
-    , selected : Bool
     }
 
 
@@ -40,7 +39,7 @@ type alias Races =
 
 type alias Model =
     { races : Maybe Races
-    , race : Maybe Race
+    , race : Race
     , errors : Maybe Http.Error
     }
 
@@ -51,7 +50,6 @@ raceDecoder =
         |> required "name" string
         |> required "pct" int
         |> required "id" string
-        |> hardcoded False
 
 
 baseUrl : String
@@ -62,7 +60,11 @@ baseUrl =
 initialModel : Model
 initialModel =
     { races = Nothing
-    , race = Nothing
+    , race =
+        { name = "Human"
+        , pct = 90
+        , id = "human"
+        }
     , errors = Nothing
     }
 
@@ -86,7 +88,7 @@ fetchRaces =
 
 type Msg
     = LoadRaces (Result Http.Error Races)
-    | ToggleRace String
+    | ToggleRace Race
 
 
 updateRaceById : (Race -> Race) -> String -> Races -> Races
@@ -118,10 +120,8 @@ update msg model =
         LoadRaces (Err error) ->
             ( { model | errors = Just error }, Cmd.none )
 
-        ToggleRace id ->
-            ( { model
-                | races = updateRaces toggleRace id model.races
-              }
+        ToggleRace race ->
+            ( { model | race = race }
             , Cmd.none
             )
 
@@ -139,31 +139,26 @@ subscriptions model =
 -- VIEW
 
 
-toggleRace : Race -> Race
-toggleRace race =
-    { race | selected = not race.selected }
-
-
-viewRace : Race -> Html Msg
-viewRace race =
+viewRace : Race -> Race -> Html Msg
+viewRace selectedRace race =
     let
         buttonClass =
-            if race.selected then
+            if selectedRace.id == race.id then
                 "c-button--unelevated"
 
             else
                 "c-button--raised"
     in
-    button [ class buttonClass, onClick (ToggleRace race.id) ] [ text race.name ]
+    button [ class buttonClass, onClick (ToggleRace race) ] [ text race.name ]
 
 
-viewRaces : Maybe Races -> Html Msg
-viewRaces maybeRaces =
+viewRaces : Maybe Races -> Race -> Html Msg
+viewRaces maybeRaces mybeRace =
     case maybeRaces of
-        Just race ->
+        Just races ->
             div []
                 [ h3 [] [ text "Select your race" ]
-                , div [] (List.map viewRace race)
+                , div [] (List.map (viewRace mybeRace) races)
                 ]
 
         Nothing ->
@@ -179,5 +174,5 @@ view model =
                 [ h1 [ class "c-nav-bar__logo" ] [ text "SOC" ]
                 ]
             ]
-        , viewRaces model.races
+        , viewRaces model.races model.race
         ]
